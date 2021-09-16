@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.jagged_array</StartupObject>
+    <StartupObject>ConsoleApp1.assessment_on_class_obj</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,8 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addition.cs" />
+    <Compile Include="assessment_on_class_obj.cs" />
+    <Compile Include="call_by_v_r.cs" />
+    <Compile Include="Class_and_object.cs" />
     <Compile Include="jagged_array.cs" />
     <Compile Include="one_d_array.cs" />
+    <Compile Include="product_array.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="two_d_arry.cs" />
     <Compile Include="common_value.cs" />
