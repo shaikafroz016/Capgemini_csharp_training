@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.assessment_on_class_obj</StartupObject>
+    <StartupObject>ConsoleApp1.asseignment_on_list</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,10 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addition.cs" />
+    <Compile Include="asseignment_on_list.cs" />
     <Compile Include="assessment_on_class_obj.cs" />
     <Compile Include="call_by_v_r.cs" />
     <Compile Include="Class_and_object.cs" />
+    <Compile Include="constructor.cs" />
+    <Compile Include="constructor_with_array.cs" />
+    <Compile Include="getter_setter.cs" />
+    <Compile Include="inheritance.cs" />
     <Compile Include="jagged_array.cs" />
+    <Compile Include="list_product_array.cs" />
     <Compile Include="one_d_array.cs" />
     <Compile Include="product_array.cs" />
     <Compile Include="Structure.cs" />
