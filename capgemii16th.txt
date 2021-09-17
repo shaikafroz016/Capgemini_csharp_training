@@ -1,0 +1,376 @@
+ class calculator
+    {  
+ 	public int add(int a, int b)
+        {
+            return a + b;
+        }
+
+        public int subs(int a, int b)
+        {
+            return a - b;
+        }
+
+        public int multi(int a, int b)
+        {
+            return a * b;
+        }
+
+        public int divs(int a, int b)
+        {
+            return a / b;
+        }
+}
+
+  static void Main(string[] args)
+        {
+           Console.WriteLine("Enter the first value");
+            int fnum = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the second value");
+            int snum = int.Parse(Console.ReadLine());
+
+            calculator calc = new calculator();
+            int result;
+            Console.WriteLine("--calculator--");
+            Console.WriteLine("1.Addition");
+            Console.WriteLine("2.Substraction");
+            Console.WriteLine("3.Multiplication");
+            Console.WriteLine("4.Division");
+            Console.WriteLine("Press any key..");
+            int key = int.Parse(Console.ReadLine());
+
+            switch(key)
+            {
+                case 1:
+                    {
+                        result = calc.add(fnum, snum);
+                        Console.WriteLine("the addition is {0} ", result);
+                        break;
+                    }
+                case 2:
+                    {
+                        result = calc.subs(fnum, snum);
+                        Console.WriteLine("the substraction is {0} ", result);
+                        break;
+                    }
+
+                case 3:
+                    {
+                        result = calc.multi(fnum, snum);
+                        Console.WriteLine("the multiplication is {0} ", result);
+                        break;
+                    }
+                case 4:
+                    {
+                        result = calc.divs(fnum, snum);
+                        Console.WriteLine("the division is {0} ", result);
+                        break;
+                    }
+                default:
+                    Console.WriteLine("invalid Key..");
+                    break;
+            }
+
+}
+
+
+
+
+class calculator
+    { 
+
+   public int[] addarray(int[] a, int[] b)
+        {
+            int[] arr = new int[a.Length];
+
+            for(int i=0;i<a.Length;i++)
+            {
+                arr[i] = a[i] + b[i];
+            }
+            return arr;
+        }
+
+}
+
+
+ static void Main(string[] args)
+ {
+
+            int[] a = new int[3];
+            int[] b = new int[3];
+
+            a[0] = 100;
+            a[1] = 700;
+            a[2] = 600;
+
+            b[0] = 200;
+            b[1] = 300;
+            b[2] = 400;
+
+            calculator calc = new calculator();
+            int[] arr=calc.addarray(a, b);
+
+            Console.WriteLine("the addition of two arrays");
+            for(int i=0;i<arr.Length;i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+
+}
+
+
+
+ class calculator
+    {  
+      public int sumarray(int[] a)
+        {
+            int sum = 0;
+            for(int i=0;i<a.Length;i++)
+            {
+                sum = sum + a[i];
+            }
+            return sum;
+        }
+    }
+
+
+ static void Main(string[] args)
+ {
+ 		int[] a = new int[3];
+ 		a[0] = 100;
+           	a[1] = 700;
+            	a[2] = 600;
+
+	    calculator calc = new calculator();
+	    int sum = calc.sumarray(a);
+            Console.WriteLine("sum of a array {0}",sum);
+
+ }
+
+
+
+
+ class calculator
+    {  
+     
+  public void sum_arrays(int[] a,int[] b,out int sum ,out int sum1,out String name)
+        {
+
+            int s = 0;
+            int s1 = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                s = s + a[i];
+            }
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                s1 = s1 + b[i];
+            }
+            sum = s;
+            sum1 = s1;
+	    name="sam"
+        }
+
+    }
+
+
+ static void Main(string[] args)
+ {
+
+	    int[] a = new int[3];
+            int[] b = new int[3];
+
+            a[0] = 100;
+            a[1] = 700;
+            a[2] = 600;
+
+            b[0] = 200;
+            b[1] = 300;
+            b[2] = 400;
+
+ 		 calculator calc = new calculator();
+            int sum1, sum2;
+	    string name;
+            calc.sum_arrays(a, b, out sum1, out sum2,out name);
+            Console.WriteLine("the sum of a array is {0} sum of b array is {1} name value is {2}", sum1, sum2, name);
+ }
+
+
+
+
+ class calculator
+    {  
+       public product[] netprice(product[] p)
+        {
+            for(int i=0;i<p.Length;i++)
+            {
+                if(p[i].price>10000)
+                {
+                    p[i].price = p[i].price - (p[i].price * 10 / 100);
+                }
+            }
+            return p;
+        }
+    }
+
+
+ static void Main(string[] args)
+ {
+ 	 product[] p = new product[3];
+ 	for (int i = 0; i < p.Length; i++)
+            {
+
+                Console.WriteLine("Product id");
+                p[i].p_id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Product Name");
+                p[i].p_name = Console.ReadLine();
+
+                Console.WriteLine("Price");
+                p[i].price = int.Parse(Console.ReadLine());
+            }
+           calculator calc = new calculator();
+            product[] p1=calc.netprice(p);
+
+            Console.WriteLine("after discount");
+
+            for (int i = 0; i < p1.Length; i++)
+            {
+
+                Console.WriteLine("product id = {0} product name = {1} price = {2} ", p1[i].p_id, p1[i].p_name, p1[i].price);
+            }
+
+
+ }
+
+
+
+  class csharp1
+    {
+       public void register(string uname,string pwd,string job,int age,string email,string city="chennai")
+        {
+            Console.WriteLine("uname = {0} password = {1} job = {2} age = {3} email {4} city = {5}", uname, pwd, job,age, email,city);
+        }
+
+        public void test1(ref int a,ref int b)
+        {
+            a = 20;
+            b = 40;
+        }
+    }
+
+    class Class5
+    {
+        static void Main(string[] args)
+        {
+            csharp1 obj = new csharp1();
+           // obj.register("hjhj", "jkjkj", "kjkj", 67867, "jkjkjkj");
+            obj.register(age: 43, email: "hello@123", pwd: "sam123", uname: "sam", job: "manager");
+
+            int a, b;
+            a = 10;
+            b = 20;
+            Console.WriteLine("before sending to method a value = {0} b value ={1}", a, b);
+            obj.test1(ref a, ref b);
+            Console.WriteLine("after sending to method a value = {0} b value ={1}", a, b);
+
+  var x = 123;
+            Console.WriteLine(x.ToString());
+            var y = "hello";
+            Console.WriteLine(y.ToString());
+
+            int[] arr = new int[2];
+            arr[0] = 900;
+            arr[1] = 890;
+
+            var z = arr;
+
+            foreach(var val in z)
+            {
+                Console.WriteLine(val.ToString());
+            }
+
+
+            List<string> ls = new List<string>();
+            ls.Add("chennai");
+            ls.Add("Bangalore");
+
+            var ls1 = ls;
+
+            foreach (var val in ls1)
+            {
+                Console.WriteLine(val.ToString());
+            }
+
+
+            int c1 = 100;
+            object c2 = 78787;
+
+            int b1 = 200;
+            object o1 = b1;
+
+            object o = 10;
+            int a1 = (int)o;
+
+            int z1, z2;
+            z1 = 105;
+            z2 = 8;
+            
+            float res;
+            res =(float) z1 /(float) z2;
+            Console.WriteLine(res);
+
+        }
+    }
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class cls1
+    {
+        int x, y, z;
+
+        public cls1(int a,int y,int z)
+        {
+            x =a;
+            this.y =y;
+           this.z = z;
+        }
+        public void print()
+        {
+            Console.WriteLine("x={0} y={1} z={2}", x, y, z);
+        }
+    }
+
+
+    class Class6
+    {
+        static void Main(string[] args)
+        {
+            cls1 obj = new cls1(10,30,70);
+            obj.print();
+
+            cls1 obj1 = new cls1(70,80,80);
+            obj1.print();
+        }
+    }
+}
+
+
+
+
+
+READ 5 PRODICTS AS A PRODUCT ARRAY
+ENTER PRODUCT ID TO SEARCH
+1002
+SEND PRODUCT LIST AND SEARCH PRDID TO CLASS METHOD
+
+PRINT 1002 PRODUCT DETAILS
