@@ -33,9 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.asseignment_on_list</StartupObject>
+    <StartupObject>ConsoleApp1.polymorphism</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClassLibrary1">
+      <HintPath>..\..\ClassLibrary1\bin\Debug\ClassLibrary1.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,11 +56,15 @@
     <Compile Include="Class_and_object.cs" />
     <Compile Include="constructor.cs" />
     <Compile Include="constructor_with_array.cs" />
+    <Compile Include="constructorchaning.cs" />
+    <Compile Include="externalclasslibrary.cs" />
     <Compile Include="getter_setter.cs" />
+    <Compile Include="hirarcial_hibrid_inheritance.cs" />
     <Compile Include="inheritance.cs" />
     <Compile Include="jagged_array.cs" />
     <Compile Include="list_product_array.cs" />
     <Compile Include="one_d_array.cs" />
+    <Compile Include="polymorphism.cs" />
     <Compile Include="product_array.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="two_d_arry.cs" />

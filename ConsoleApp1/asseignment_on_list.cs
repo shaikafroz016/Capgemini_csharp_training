@@ -12,6 +12,10 @@ namespace ConsoleApp1
         public string em_job { get; set; }
         public int dept_no { get; set; }
         public int salary { get; set; }
+        public override string ToString()
+        {
+            return this.emp_no + " " + " " + this.emp_name + " " + this.em_job + " " + this.dept_no + " " + this.salary + "";
+        }
     }
     class b_claas
     {
@@ -64,6 +68,7 @@ namespace ConsoleApp1
                 {
                     int s = x.salary * 10 / 100;
                    x.salary += s;
+                    Console.WriteLine(x.salary);
                 }
             }
         }
