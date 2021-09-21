@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.polymorphism</StartupObject>
+    <StartupObject>ConsoleApp1.interface_pointer</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassLibrary1">
@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="abstraction_encapsulation\abstraction.cs" />
+    <Compile Include="abstraction_encapsulation\encap_dataconnect.cs" />
+    <Compile Include="abstract_class.cs" />
     <Compile Include="addition.cs" />
     <Compile Include="asseignment_on_list.cs" />
     <Compile Include="assessment_on_class_obj.cs" />
@@ -61,10 +64,13 @@
     <Compile Include="getter_setter.cs" />
     <Compile Include="hirarcial_hibrid_inheritance.cs" />
     <Compile Include="inheritance.cs" />
+    <Compile Include="interfacewithpoly.cs" />
+    <Compile Include="interface_pointer.cs" />
     <Compile Include="jagged_array.cs" />
     <Compile Include="list_product_array.cs" />
     <Compile Include="one_d_array.cs" />
     <Compile Include="polymorphism.cs" />
+    <Compile Include="poly_overriding.cs" />
     <Compile Include="product_array.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="two_d_arry.cs" />
@@ -75,5 +81,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
