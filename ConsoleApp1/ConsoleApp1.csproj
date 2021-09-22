@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.interface_pointer</StartupObject>
+    <StartupObject>ConsoleApp1.ienumerator_inmerable</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassLibrary1">
@@ -56,11 +56,19 @@
     <Compile Include="asseignment_on_list.cs" />
     <Compile Include="assessment_on_class_obj.cs" />
     <Compile Include="call_by_v_r.cs" />
+    <Compile Include="dict_assessment.cs" />
+    <Compile Include="jagged_dict.cs" />
     <Compile Include="Class_and_object.cs" />
     <Compile Include="constructor.cs" />
     <Compile Include="constructor_with_array.cs" />
     <Compile Include="constructorchaning.cs" />
+    <Compile Include="dict_collection.cs" />
+    <Compile Include="exception_handlig.cs" />
     <Compile Include="externalclasslibrary.cs" />
+    <Compile Include="ienumerator_inmerable.cs" />
+    <Compile Include="mannualexceptioclass.cs" />
+    <Compile Include="userdefinedexcep.cs" />
+    <Compile Include="generic_type.cs" />
     <Compile Include="getter_setter.cs" />
     <Compile Include="hirarcial_hibrid_inheritance.cs" />
     <Compile Include="inheritance.cs" />
@@ -69,9 +77,12 @@
     <Compile Include="jagged_array.cs" />
     <Compile Include="list_product_array.cs" />
     <Compile Include="one_d_array.cs" />
+    <Compile Include="partial_class.cs" />
     <Compile Include="polymorphism.cs" />
     <Compile Include="poly_overriding.cs" />
     <Compile Include="product_array.cs" />
+    <Compile Include="sealed_class.cs" />
+    <Compile Include="static_class.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="two_d_arry.cs" />
     <Compile Include="common_value.cs" />
