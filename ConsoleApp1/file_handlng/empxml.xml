@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<employees>
+	<employe>
+		<name>Shaik</name>
+		<deptno>1543</deptno>
+		<job>developer</job>
+		<salary>250000</salary>
+		<empno>13423</empno>
+	</employe>
+	<employe>
+		<name>sks</name>
+		<deptno>1543</deptno>
+		<job>developer</job>
+		<salary>250000</salary>
+		<empno>13423</empno>
+	</employe>
+	<employe>
+		<name>soul</name>
+		<deptno>1543</deptno>
+		<job>developer</job>
+		<salary>250000</salary>
+		<empno>13423</empno>
+	</employe>
+	<employe>
+		<name>vss</name>
+		<deptno>1543</deptno>
+		<job>developer</job>
+		<salary>250000</salary>
+		<empno>13423</empno>
+	</employe>
+	<employe>
+		<name>shoaib</name>
+		<deptno>1543</deptno>
+		<job>developer</job>
+		<salary>250000</salary>
+		<empno>13423</empno>
+	</employe>
+</employees>

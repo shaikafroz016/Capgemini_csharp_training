@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class players
+    [Serializable]
+    public class players
     {
         public int pl_id { get; set; }
         public string pl_name { get; set; }

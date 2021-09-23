@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.ienumerator_inmerable</StartupObject>
+    <StartupObject>ConsoleApp1.file_handlng.xmlreading</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassLibrary1">
@@ -57,6 +57,9 @@
     <Compile Include="assessment_on_class_obj.cs" />
     <Compile Include="call_by_v_r.cs" />
     <Compile Include="dict_assessment.cs" />
+    <Compile Include="file_handlng\assmnt_serial_deserial.cs" />
+    <Compile Include="file_handlng\xmlreading.cs" />
+    <Compile Include="file_handlng\file_writing.cs" />
     <Compile Include="jagged_dict.cs" />
     <Compile Include="Class_and_object.cs" />
     <Compile Include="constructor.cs" />
@@ -67,6 +70,8 @@
     <Compile Include="externalclasslibrary.cs" />
     <Compile Include="ienumerator_inmerable.cs" />
     <Compile Include="mannualexceptioclass.cs" />
+    <Compile Include="threading\mulitithreading.cs" />
+    <Compile Include="threading\threading.cs" />
     <Compile Include="userdefinedexcep.cs" />
     <Compile Include="generic_type.cs" />
     <Compile Include="getter_setter.cs" />
@@ -92,6 +97,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="file_handlng\empxml.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
