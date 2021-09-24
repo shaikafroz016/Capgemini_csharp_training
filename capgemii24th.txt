@@ -1,0 +1,349 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
+
+
+
+namespace ConsoleApp3
+{
+
+    class p_example
+    {
+        public void method1()
+        {
+            Console.WriteLine("method1");
+        }
+
+        public void method2()
+        {
+            Console.WriteLine("method2");
+        }
+
+        public void method3()
+        {
+            Console.WriteLine("method3");
+        }
+
+        public void callAllMethods()
+        {
+            Parallel.Invoke(
+                new Action(method1),
+                new Action(method2),
+                new Action(method3)
+                );
+        }
+    }
+
+    class Class1
+    {
+        static void Main(string[] args)
+        {
+
+            p_example p = new p_example();
+            p.callAllMethods();
+
+
+            Console.WriteLine("using for loop");
+
+            Stopwatch st = new Stopwatch();
+            st.Start();
+            for(int i=0;i<10;i++)
+            {
+                Console.WriteLine(i);
+                Thread.Sleep(1000);
+                
+            }
+            st.Stop();
+            Console.WriteLine("the time taken for loop " + st.ElapsedTicks.ToString());
+            st.Reset();
+
+            st.Start();
+
+            Parallel.For(0, 10, index =>
+            {
+                Console.WriteLine(index);
+                Thread.Sleep(1000);
+            });
+            st.Stop();
+            Console.WriteLine("the time taken for parallal loop " + st.ElapsedTicks.ToString());
+            st.Reset();
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    public delegate int del2(int a, int b);
+    class calc
+    {
+        //public void add()
+        //{
+        //    Console.WriteLine("add method");
+        //}
+
+        //public void subs()
+        //{
+        //    Console.WriteLine("subs method");
+        //}
+
+        //public void multi()
+        //{
+        //    Console.WriteLine("multi method");
+        //}
+
+        //public void divs()
+        //{
+        //    Console.WriteLine("divs method");
+        //}
+        
+
+        public del2 pointer(int key)
+        {
+            del2 d = null;
+            if(key==1)
+            {
+                d = add;
+            }
+           else if (key == 2)
+            {
+                d = subs;
+            }
+            else if(key == 3)
+            {
+                d = multi;
+            }
+            else if (key == 4)
+            {
+                d = divs;
+            }
+            return d;
+        }
+        private int add(int a ,int b)
+        {
+            return a + b;
+        }
+
+        private int subs(int a, int b)
+        {
+            return a - b;
+        }
+
+        private int multi(int a, int b)
+        {
+            return a * b;
+        }
+
+        private int divs(int a, int b)
+        {
+            return a / b;
+        }
+    }
+
+    class Class2
+    {
+       //public delegate void del();
+       public delegate int del1(int a,int b);
+        static void Main(string[] args)
+        {
+            calc obj = new calc();
+
+            //delegates
+
+            //del d = null;
+
+            //d = obj.add;
+            //d.Invoke();
+
+            //d = obj.subs;
+            //d.Invoke();
+
+            //del1 d = null;
+
+            //d = obj.add;
+            //int result=d.Invoke(10, 20);
+            //Console.WriteLine("the addition is " + result);
+
+            Console.WriteLine("calculation");
+
+            Console.WriteLine("enter a first number");
+            int fnum = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("enter a second number");
+            int snum = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("1.addition");
+            Console.WriteLine("2.substraction");
+            Console.WriteLine("3.multiplication");
+            Console.WriteLine("4.division");
+
+            Console.WriteLine("press any key");
+            int key = int.Parse(Console.ReadLine());
+
+            int result = obj.pointer(key).Invoke(fnum, snum);
+
+            Console.WriteLine("the result is " + result);
+
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    class xyz
+    {
+        public bool mobilecheck(string phone)
+        {
+            string strreg = @"^[0-9]{10}$";
+            string strreg1 = @"^[0-9]{3}-[0-9]{4}-[0-9]{4}$";
+            Regex re = new Regex(strreg1);
+            if(re.IsMatch(phone))
+            {
+                return true;
+            }
+            else
+            {
+                return false;                    
+            }
+        }
+    }
+
+    class Class3
+    {
+        static void Main(string[] args)
+        {
+            string phone = "222-3333-8888";
+
+            xyz obj = new xyz();
+            bool flag=obj.mobilecheck(phone);
+            if(flag==true)
+            {
+                Console.WriteLine("phone number valid");
+            }
+            else
+            {
+                Console.WriteLine("invalid phone number");
+            }
+
+                     
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+namespace ConsoleApp3
+{
+    class sql_data_rep:IDisposable
+    {
+        SqlConnection sqlcon;
+        public sql_data_rep()
+        {
+            sqlcon = new SqlConnection("connection string");
+            sqlcon.Open();
+        }
+
+      
+        public DataSet getdata()
+        {
+            return new DataSet();
+        }
+
+        public void Dispose()
+        {
+            if(sqlcon!=null)
+            {
+                sqlcon.Dispose();
+            }
+        }
+
+    }
+
+    class Class4
+    {
+        static void Main(string[] args)
+        {
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int[] arr=new int[50];
+
+            for (int i = 0; i < 50; i++)
+            {
+                arr[i] = i * 100;
+            }
+
+            Console.WriteLine("using for loop");
+
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            for(int i=0;i<50;i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+
+            st.Stop();
+           
+            Console.WriteLine("time taken to loop using for " + st.ElapsedTicks.ToString());
+            st.Reset();
+            Console.WriteLine("using foreach loop");
+            Stopwatch st1 = new Stopwatch();
+            st1.Start();
+            foreach (int x in arr)
+            {
+                Console.WriteLine(x);
+            }
+            st1.Stop();
+            
+            Console.WriteLine("time taken to loop using foreach " + st1.ElapsedTicks.ToString());
+            st1.Reset();
+
+        }
+    }
+}
