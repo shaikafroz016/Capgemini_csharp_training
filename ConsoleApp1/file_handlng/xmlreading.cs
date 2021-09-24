@@ -14,8 +14,8 @@ namespace ConsoleApp1.file_handlng
     {
         static void Main(string[] args)
         {
-            DataSet ds = new DataSet();
-            ds.ReadXml("e://CG//empxml.xml");
+            DataSet ds = new DataSet();//dataset used to read and store xml value
+            ds.ReadXml("e://CG//empxml.xml");//reading xml file
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 Console.WriteLine("emp name={0}", ds.Tables[0].Rows[i].ItemArray[0]);
@@ -25,7 +25,7 @@ namespace ConsoleApp1.file_handlng
                 Console.WriteLine("emp no={0}", ds.Tables[0].Rows[i].ItemArray[4]);
                 Console.WriteLine("\n");
             }
-            FileStream fs = new FileStream("e://CG//empdata.data", FileMode.Create);
+            FileStream fs = new FileStream("e://CG//empdata.data", FileMode.Create);//creating binary file
             BinaryFormatter btr = new BinaryFormatter();//used for serialzie or deserialzise
             btr.Serialize(fs, ds);
             fs.Close();

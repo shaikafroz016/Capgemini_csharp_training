@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp1.file_handlng.xmlreading</StartupObject>
+    <StartupObject>ConsoleApp1.patent_test</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassLibrary1">
@@ -70,6 +70,7 @@
     <Compile Include="externalclasslibrary.cs" />
     <Compile Include="ienumerator_inmerable.cs" />
     <Compile Include="mannualexceptioclass.cs" />
+    <Compile Include="patent_test.cs" />
     <Compile Include="threading\mulitithreading.cs" />
     <Compile Include="threading\threading.cs" />
     <Compile Include="userdefinedexcep.cs" />
