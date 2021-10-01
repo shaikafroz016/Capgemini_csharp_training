@@ -49,11 +49,8 @@ namespace ConsoleApp1.file_handlng
                 sw.Close();
                 Console.WriteLine("serializtion started");
                 FileStream fs = new FileStream("e://CG//playersinfo.data", FileMode.Create);
-                BinaryFormatter btr = new BinaryFormatter();
-                foreach (players x in li)
-                {
-                    btr.Serialize(fs, x);
-                }
+		BinaryFormatter btr = new BinaryFormatter();
+                btr.Serialize(fs, li);
                 Console.WriteLine("Serializition completed");
                 fs.Close();
                 FileStream fs1 = new FileStream("e://CG//playersinfo.data", FileMode.Open);
