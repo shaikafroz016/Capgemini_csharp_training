@@ -1,0 +1,585 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class AdminController
+    {
+        DataBase_Repo dc;
+
+        public AdminController()
+        {
+            dc = new DataBase_Repo("sqlserver/databae_info/credential");
+        }
+
+        public void print()
+        {
+            dc.constatus();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class CustomerController
+    {
+        DataBase_Repo dc;
+
+        public CustomerController()
+        {
+            dc = new DataBase_Repo("sqlserver/databae_info/credential");
+        }
+
+        public void print()
+        {
+            dc.constatus();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class LoginController
+    {
+        DataBase_Repo dc;
+
+        public LoginController()
+        {
+            dc = new DataBase_Repo("sqlserver/databae_info/credential");
+        }
+
+        public void print()
+        {
+            dc.constatus();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class DataBase_Repo
+    {
+        string constring,domain_name;
+        public DataBase_Repo(string constring,string domain_name)
+        {
+            this.constring = constring;
+            this.domain_name = domain_name;
+        }
+
+        public void constatus()
+        {
+            Console.WriteLine("connection status {0} domain name {1}", constring,domain_name);
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("enter the Controller to Initiate");
+            Console.WriteLine("1.loginController");
+            Console.WriteLine("2.CustomerController");
+            Console.WriteLine("3.AdminController");
+
+            Console.WriteLine("Press any key to Initiate");
+            int key =int.Parse(Console.ReadLine());
+
+            if(key==1)
+            {
+                LoginController lg = new LoginController();
+                lg.print();
+            }
+            if (key == 2)
+            {
+                CustomerController cs = new CustomerController();
+                cs.print();
+            }
+            if (key == 3)
+            {
+                AdminController ad = new AdminController();
+                ad.print();
+            }
+
+
+
+        }
+    }
+}
+
+
+
+
+
+USING DEPENDENCY INJECTION SOLUTION FOR THE ABOVE GIVEN PROBLEM
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class AdminController
+    {
+        Container ConObj;
+        public AdminController(Container ConObj)
+        {
+            this.ConObj = ConObj;
+        }
+
+        public void print()
+        {
+            ConObj.print();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class CustomerController
+    {
+
+        Container ConObj;
+        public CustomerController(Container ConObj)
+        {
+            this.ConObj = ConObj;
+        }
+
+        public void print()
+        {
+            ConObj.print();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class LoginController
+    {
+
+        Container ConObj;
+        public LoginController(Container ConObj)
+        {
+            this.ConObj = ConObj;
+        }
+
+        public void print()
+        {
+            ConObj.print();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class DataBase_Repo
+    {
+        string constring,domain_name,location,protocol;
+        public DataBase_Repo(string constring,string domain_name,string location,string protocol)
+        {
+            this.constring = constring;
+            this.domain_name = domain_name;
+            this.location = location;
+            this.protocol = protocol;
+        }
+
+        public void constatus()
+        {
+            Console.WriteLine("connection status {0} domain name {1} location = {2} protocol = {3}", constring,domain_name,location,protocol);
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+
+    class Container
+    {
+        DataBase_Repo db;
+        public Container()
+        {
+            db =new DataBase_Repo("sqlconnection/database/credentioal", "salesforceDomain","chennai location","ssil/12.56.78.89");
+        }
+
+        public void print()
+        {
+            db.constatus();
+        }
+
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Container ConObj = new Container();
+
+            Console.WriteLine("enter the Controller to Initiate");
+            Console.WriteLine("1.loginController");
+            Console.WriteLine("2.CustomerController");
+            Console.WriteLine("3.AdminController");
+
+            Console.WriteLine("Press any key to Initiate");
+            int key =int.Parse(Console.ReadLine());
+
+            if(key==1)
+            {
+                LoginController lg = new LoginController(ConObj);
+                lg.print();
+            }
+            if (key == 2)
+            {
+                CustomerController cs = new CustomerController(ConObj);
+                cs.print();
+            }
+            if (key == 3)
+            {
+                AdminController ad = new AdminController(ConObj);
+                ad.print();
+            }
+
+        }
+    }
+}
+
+
+USING INTERFACE SOLUTION
+
+namespace ConsoleApp7
+{
+    interface IContainer
+    {
+        void print();
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+
+    class Container:IContainer
+    {
+        DataBase_Repo db;
+        public Container()
+        {
+            db =new DataBase_Repo("sqlconnection/database/credentioal", "salesforceDomain","chennai location","ssil/12.56.78.89");
+        }
+
+        public void print()
+        {
+            db.constatus();
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class AdminController
+    {
+        IContainer ConObj;
+        public AdminController(IContainer ConObj)
+        {
+            this.ConObj = ConObj;
+        }
+
+        public void print()
+        {
+            ConObj.print();
+        }
+    }
+}
+
+
+ static void Main(string[] args)
+        {
+            IContainer ConObj;
+            ConObj = new Container();
+         }
+
+
+
+
+MVC APPLICATION
+
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebApplication7.Models;
+
+namespace WebApplication7.Controllers
+{
+    public class EmployeeController1 : Controller
+    {
+
+        IEmplist emplist1;
+        public EmployeeController1(IEmplist emplist1)
+        {
+            this.emplist1 = emplist1;
+        }
+
+        public IActionResult emplist()
+        {
+            List<Employee1> ls = emplist1.getlist();
+           return View(ls);
+        }
+    }
+}
+
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<WebApplication7.Models.Employee1> 
+@{
+}
+<h1>Employee List</h1>
+<table border="1" bgcolor="orange">
+    <tr><th>empno</th><th>empname</th><th>Deptno</th><th>Salary</th></tr>
+    @foreach(var x in Model)
+            {
+<tr>
+    <td>@Html.DisplayFor(model => x.empno)</td>
+    <td>@Html.DisplayFor(model => x.empname)</td>
+    <td>@Html.DisplayFor(model => x.deptno)</td>
+    <td>@Html.DisplayFor(model => x.salary)</td>
+</tr>
+            }
+</table>
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebApplication7.Models
+{
+    public class Employee1
+    {
+        public int empno { get; set; }
+        public string empname { get; set; }
+        public int deptno { get; set; }
+        public int salary { get; set; }
+
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebApplication7.Models;
+
+namespace WebApplication7.Models
+{
+    public interface IEmplist
+    {
+        List<Employee1> getlist();
+    }
+
+    public class BAL_class:IEmplist
+    {
+        public List<Employee1> getlist()
+        {
+            List<Employee1> ls = new List<Employee1>();
+
+            ls.Add(new Employee1 { empno = 1001, empname = "sam", deptno = 10, salary = 5000 });
+            ls.Add(new Employee1 { empno = 1002, empname = "rahul", deptno = 20, salary = 6000 });
+            ls.Add(new Employee1 { empno = 1003, empname = "rajiv", deptno = 30, salary = 7000 });
+            ls.Add(new Employee1 { empno = 1004, empname = "santosh", deptno = 30, salary = 8000 });
+            ls.Add(new Employee1 { empno = 1005, empname = "peter", deptno = 20, salary = 8000 });
+            return ls;
+        }
+
+    }
+}
+
+
+   public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+
+            //services.AddSingleton<IEmplist, BAL_class>();
+            //services.AddTransient<IEmplist, BAL_class>();
+            services.AddScoped<IEmplist, BAL_class>();
+        }
+
+
+
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebApplication8
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Checking your Authentication...");
+                await next();
+                await context.Response.WriteAsync("Authentication success.....");
+            });
+
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Checking your permission Auhorization..");
+                await next();
+                await context.Response.WriteAsync("Authorization success.....");
+            });
+
+            app.Run(async (context) =>
+            {
+               await context.Response.WriteAsync("hello welcome to main program..");
+
+            });
+        }
+    }
+}
+
+
+
+create table emp (empno int primary key,empname varchar(20),job varchar(20),deptno int,
+salary int)
+
+create table dept(deptno int primary key,deptname varchar(20),loc_name varchar(20))
+
+insert into emp values(1001,'sam','manager',10,7000)
+insert into emp values(1002,'sanjay','admin',10,6000)
+insert into emp values(1003,'sarath','admin',10,8000)
+insert into emp values(1004,'raju','dev',20,9000)
+insert into emp values(1005,'raghav','dev',20,5000)
+insert into emp values(1006,'nanada','dev',20,7000)
+insert into emp values(1007,'david','manager',30,5000)
+insert into emp values(1008,'peter','tester',30,6000)
+
+
+
+insert into dept values(10,'Development','bangalore')
+insert into dept values(20,'Testing','chennai')
+insert into dept values(30,'HR','mumbai')
+
+select * from emp
+select * from dept
+
+
+--//sql(structural query language)
+
+--//DML data manupulation language
+--//DDL data difination language
+--//TCL transactional control language
+--//DCL data control language
+
+
