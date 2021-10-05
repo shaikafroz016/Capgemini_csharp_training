@@ -1,0 +1,873 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    class gen<T,T1>
+    {
+        T a, b;
+        T1 x, y;
+        public gen(T a,T b,T1 x,T1 y)
+        {
+            this.a = a;
+            this.b = b;
+            this.x = x;
+            this.y = y;
+        }
+
+        public void print()
+        {
+            Console.WriteLine("a = {0} b = {1} x = {2} y = {3}", a, b,x,y);
+        }
+    }
+    class Class22
+    {
+        static void Main(string[] args)
+        {
+            gen<int,string> obj =new gen<int,string>(10, 50,"Hello","Chennai");
+            obj.print();
+
+            gen<string,string> obj1 = new gen<string,string>("hello", "chennai","Hello","Kolkata");
+            obj1.print();
+
+            gen<int, int> obj2 = new gen<int, int>(10, 50, 60,80);
+            obj2.print();
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    partial class p_class
+    {
+        public void method1()
+        {
+
+        }
+
+        public void method2()
+        {
+
+        }
+
+        public void method3()
+        {
+
+        }
+    }
+
+
+    partial class p_class
+    {
+        public void method4()
+        {
+
+        }
+
+        public void method5()
+        {
+
+        }
+
+        public void method6()
+        {
+
+        }
+    }
+
+    partial class p_class
+    {
+        public void method7()
+        {
+
+        }
+
+        public void method8()
+        {
+
+        }
+
+        public void method9()
+        {
+
+        }
+        public void method10()
+        {
+
+        }
+    }
+
+    class Class23
+    {
+        static void Main(string[] args)
+        {
+            p_class p = new p_class();
+            p.method1();
+           
+           
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    static class s1_class
+    {
+        static int x = 0;
+        public static int increment()
+        {
+            x++;
+            return x;
+        }
+    }
+
+    class o_class
+    {
+        
+        public void print()
+        {
+            int x = s1_class.increment();
+            Console.WriteLine(x);
+        }
+    }
+
+    class Class24
+    {
+        static void Main(string[] args)
+        {
+            o_class obj1 = new o_class();
+            obj1.print();
+
+            o_class obj2 = new o_class();
+            obj2.print();
+
+            o_class obj3 = new o_class();
+            obj3.print();
+
+            o_class obj4 = new o_class();
+            obj4.print();
+
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class s_class2
+    {
+
+    }
+
+    sealed class s3_class:s_class2
+    {
+
+    }
+
+   
+    class Class25
+    {
+        static void Main(string[] args)
+        {
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+   
+    class Class26
+    {
+        static void Main(string[] args)
+        {
+            int x, y, z;
+
+            try
+            {
+                int[] arr = new int[3];
+
+                Console.WriteLine("enter x value");
+                x = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("enter y value");
+                y = int.Parse(Console.ReadLine());
+
+                z = x / y;
+
+                Console.WriteLine("the result is {0}", z);
+
+                Console.WriteLine("enter the size of array");
+                int size = int.Parse(Console.ReadLine());
+
+                for(int i=0;i<size;i++)
+                {
+                    arr[i] = int.Parse(Console.ReadLine());
+                }
+
+
+            }
+            catch(DivideByZeroException ex)
+            {
+                Console.WriteLine("Error in code " + ex.Message.ToString());
+            }
+
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Error in code " + ex.Message.ToString());
+            }
+
+            Console.Read();
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    class e_class
+    {
+        int x, y, z;
+
+        public e_class(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+        public int print()
+        {
+            try
+            {
+                z = x / y;
+                return z;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+    }
+
+    class Class27
+    {
+        static void Main(string[] args)
+        {
+            int x, y;
+            Console.WriteLine("enter x value");
+            x = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("enter y value");
+            y = int.Parse(Console.ReadLine());
+
+            e_class e1 = new e_class(x,y);
+
+            try
+            {
+
+                int z = e1.print();
+                Console.WriteLine("the result is {0}", z);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error in code " + ex.Message.ToString());
+            }
+           
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Class28
+    {
+       
+        static void Main(string[] args)
+        {
+            int empno, salary;
+            string empname;
+            try
+            {
+                Console.WriteLine("enter empno");
+                empno = int.Parse(Console.ReadLine());
+
+
+                Console.WriteLine("enter empname");
+                empname = Console.ReadLine();
+
+
+                Console.WriteLine("enter salary");
+                salary = int.Parse(Console.ReadLine());
+                if (salary < 10000)
+                {
+                    throw new Exception();
+                }
+                Console.WriteLine("empno = {0} empname = {1} salary = {2}", empno, empname, salary);
+            }
+            catch
+            {
+                Console.WriteLine("salary must be greater than 10k");
+            }
+
+            finally
+            {
+                Console.WriteLine("this is finally block..");
+            }
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class sa_check_exception:Exception
+    {
+        public sa_check_exception():base("Salary Must be between 10k to 2lakhs as per salary policy")
+        {
+
+        }
+    }
+    class dept_check_exception : Exception
+    {
+        public dept_check_exception() : base("department number greater than 30 not exist in the organization")
+        {
+
+        }
+    }
+    class Class29
+    {
+        static void Main(string[] args)
+        {
+            int empno,deptno, salary;
+            string empname;
+            try
+            {
+                Console.WriteLine("enter empno");
+                empno = int.Parse(Console.ReadLine());
+
+
+                Console.WriteLine("enter empname");
+                empname = Console.ReadLine();
+
+                Console.WriteLine("enter deptno");
+                deptno = int.Parse(Console.ReadLine());
+                if (deptno > 30)
+                {
+                    throw new dept_check_exception();
+                }
+
+
+                Console.WriteLine("enter salary");
+                salary = int.Parse(Console.ReadLine());
+                if (salary < 10000)
+                {
+                    throw new sa_check_exception();
+                }
+                Console.WriteLine("empno = {0} empname = {1} salary = {2}", empno, empname, salary);
+            }
+            catch(sa_check_exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            catch (dept_check_exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            finally
+            {
+                Console.WriteLine("this is final block..");
+            }
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+
+namespace ConsoleApp1
+{
+
+    class iterator
+    {
+        public void print_arrays(IEnumerable ar)
+        {
+            IEnumerator n = ar.GetEnumerator();
+            while(n.MoveNext())
+            {
+                Console.WriteLine(n.Current.ToString());
+            }
+        }
+    }
+
+    class Class30
+    {
+        static void Main(string[] args)
+        {
+            //List
+            //ArrayList
+            //Ienumarator / IEnumerable
+            //Dictionary / Hashtable
+            //Stack / Que
+            //Linked list
+            //Sorted list
+
+            iterator itr = new iterator();
+
+            int[] arr1 = new int[3];
+
+            arr1[0] = 900;
+            arr1[1] = 200;
+            arr1[2] = 300;
+
+            Console.WriteLine("printing integer array");
+            itr.print_arrays(arr1);
+
+
+            List<int> ls = new List<int>();
+            List<int> ls2 = new List<int>();
+            List<int> ls3 = new List<int>();
+            ls.Add(100);
+            ls.Add(200);
+            ls.Add(300);
+            ls.Add(400);
+            ls.Add(100);
+
+            ls2.Add(1000);
+            ls2.Add(2000);
+
+            ls3.Add(10);
+            ls3.Add(20);
+
+            Console.WriteLine("using list array");
+            itr.print_arrays(ls);
+
+            ls.Remove(400);
+            Console.WriteLine("after removing value");
+            itr.print_arrays(ls);
+
+            ls.AddRange(ls2);
+            Console.WriteLine("after adding new list");
+            itr.print_arrays(ls);
+
+            ls.RemoveRange(2, 2);
+            Console.WriteLine("after removing a range ");
+            itr.print_arrays(ls);
+
+            ls.Insert(0, 500);
+            Console.WriteLine("after inserting value ");
+            itr.print_arrays(ls);
+
+            ls.InsertRange(2, ls3);
+            Console.WriteLine("after inserting inbetweeen  the list array");
+            itr.print_arrays(ls);
+
+
+
+            //for (int i=0;i<ls.Count;i++)
+            //{
+            //    Console.WriteLine(ls[i].ToString());
+            //}
+
+            //Console.WriteLine("using for each");
+
+            //foreach (int x in ls)
+            //{
+            //    Console.WriteLine(x);
+            //}
+
+            //IEnumerator n = ls.GetEnumerator();
+
+            //Console.WriteLine("using Ienumerator");
+            //while (n.MoveNext())
+            //{
+            //    Console.WriteLine(n.Current.ToString());
+            //}
+
+
+            List<string> ls1 = new List<string>();
+
+            ls1.Add("chennai");
+            ls1.Add("cochin");
+            ls1.Add("goa");
+            ls1.Add("pune");
+            ls1.Add("mumbai");
+
+            Console.WriteLine("using string foreach");
+
+            //foreach (string x in ls1)
+            //{
+            //    Console.WriteLine(x);
+            //}
+            itr.print_arrays(ls1);
+
+            ArrayList als = new ArrayList();
+
+            IEnumerator n1 = als.GetEnumerator();
+
+            als.Add(100);
+            als.Add("chennai");
+            als.Add(true);
+            als.Add(10.6f);
+            als.Add("cricket");
+
+            Console.WriteLine("using ArrayList");
+
+            //foreach (object x in als)
+            //{
+            //    Console.WriteLine(x.ToString());
+            //}
+            itr.print_arrays(als);
+
+            Stack st = new Stack();
+            for(int i=0;i<10;i++)
+            {
+                st.Push(i * 10);
+            }
+
+            Console.WriteLine("using stack Array");
+            itr.print_arrays(st);
+
+            Queue q = new Queue();
+            for (int i = 0; i < 10; i++)
+            {
+                q.Enqueue(i * 10);
+            }
+
+            Console.WriteLine("using queue Array");
+            itr.print_arrays(q);
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+namespace ConsoleApp1
+{
+
+
+    class Class31
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<int, string> di = new Dictionary<int, string>();
+            di.Add(100, "chennai");
+            di.Add(200, "bangalore");
+            di.Add(300, "pune");
+            di.Add(400, "goa");
+
+            Console.WriteLine(di[400]);
+
+            Console.WriteLine("Dictionary values");
+
+            foreach (KeyValuePair<int,string> x in di)
+            {
+                Console.WriteLine("key = {0} value = {1}", x.Key, x.Value);
+            }
+
+
+            Dictionary<string, string> di1 = new Dictionary<string, string>();
+
+            di1.Add("chn", "chennai");
+            di1.Add("blr", "bangalore");
+            di1.Add("pnu", "pune");
+            di1.Add("goa", "goa");
+
+            Console.WriteLine(di1["chn"]);
+
+            Console.WriteLine("string Dictionary values");
+
+            foreach (KeyValuePair<string, string> x in di1)
+            {
+                Console.WriteLine("key = {0} value = {1}", x.Key, x.Value);
+            }
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    class em_list
+    {
+        public void print(Dictionary<string, List<employee>> di)
+        {
+            foreach (KeyValuePair<string, List<employee>> x in di)
+            {
+                Console.WriteLine(" department {0}", x.Key);
+                foreach(employee x1 in x.Value)
+                {
+                    Console.WriteLine("empno = {0} empname = {1} job = {2} deptno ={3} salary = {4}", x1.empno, x1.empname, x1.job, x1.deptno, x1.salary);
+                }
+
+            }
+                
+            }
+        }
+    
+
+    class Class32
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<int, employee> emplst = new Dictionary<int, employee>();
+
+            emplst.Add(1001, new employee
+            {
+                empno = 1001,
+                empname = "sam",
+                job = "manager",
+                deptno = 10,
+                salary = 8000
+            });
+            emplst.Add(1002, new employee
+            {
+                empno = 1002,
+                empname = "rahul",
+                job = "manager",
+                deptno = 20,
+                salary = 9000
+            });
+            emplst.Add(1003, new employee
+            {
+                empno = 1003,
+                empname = "sanjay",
+                job = "admin",
+                deptno = 30,
+                salary = 6000
+            });
+
+            foreach(KeyValuePair<int,employee> x in emplst)
+            {
+                Console.WriteLine("key = {0} value = {1}", x.Key, x.Value.ToString());
+            }
+
+            List<employee> t_ls = new List<employee>();
+
+            t_ls.Add( new employee
+            {
+                empno = 1001,
+                empname = "sam",
+                job = "manager",
+                deptno = 10,
+                salary = 8000
+            });
+            t_ls.Add(new employee
+            {
+                empno = 1002,
+                empname = "rahul",
+                job = "manager",
+                deptno = 10,
+                salary = 9000
+            });
+            t_ls.Add(new employee
+            {
+                empno = 1003,
+                empname = "sanjay",
+                job = "admin",
+                deptno = 10,
+                salary = 6000
+            });
+
+            List<employee> d_ls = new List<employee>();
+            d_ls.Add(new employee
+            {
+                empno = 1004,
+                empname = "san",
+                job = "manager",
+                deptno = 20,
+                salary = 9000
+            });
+            d_ls.Add(new employee
+            {
+                empno = 1005,
+                empname = "ranjit",
+                job = "dev",
+                deptno = 20,
+                salary = 9000
+            });
+            d_ls.Add(new employee
+            {
+                empno = 1006,
+                empname = "jay",
+                job = "dev",
+                deptno = 20,
+                salary = 9000
+            });
+
+
+            List<employee> h_ls = new List<employee>();
+            h_ls.Add(new employee
+            {
+                empno = 1007,
+                empname = "rajiv",
+                job = "manager",
+                deptno = 30,
+                salary = 7000
+            });
+            h_ls.Add(new employee
+            {
+                empno = 1008,
+                empname = "harish",
+                job = "hr",
+                deptno = 30,
+                salary = 7000
+            });
+            h_ls.Add(new employee
+            {
+                empno = 1009,
+                empname = "kumar",
+                job = "admin",
+                deptno = 30,
+                salary = 8000
+            });
+
+            Dictionary<string, List<employee>> elist = new Dictionary<string, List<employee>>();
+
+            elist.Add("Testing", t_ls);
+            elist.Add("Development", d_ls);
+            elist.Add("HR", h_ls);
+
+            em_list els = new em_list();
+            els.print(elist);
+
+
+        }
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    class players
+    {
+        public int pl_id { get; set; }
+        //plname,catgame,country
+    }
+
+    class pl_list
+    {
+        public Dictionary<string ,List<players>> list_players(List<players> ls)
+        {
+            //cricket
+            //hockey
+            //football
+            Dictionary<string, List<players>> di = new Dictionary<string, List<players>>();
+            di.Add("cricket", ls);
+            di.Add("hockey", ls);
+            di.Add("football", ls);
+
+            return di;
+
+        }
+    }
+
+
+    class Class33
+    {
+        static void Main(string[] args)
+        {
+            List<players> ls = new List<players>();
+            //12 records
+
+            pl_list p = new pl_list();
+            Dictionary<string, List<players>>  di=p.list_players(ls);
+
+            foreach()
+            {
+                foreach()
+                {
+
+                }
+            }    
+        }
+    }
+}

@@ -1,0 +1,344 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ClassLibrary1;
+
+namespace ConsoleApp1
+{
+
+    class one
+    {
+        int x, y, z;
+
+        public one(int x,int y,int z)
+        {
+            this.x = x;
+            this.y =y;
+            this.z = z;
+        }
+        public void method1()
+        {
+            Console.WriteLine("x value = {0} y value = {1} z value = {2}", x,y,z);
+        }
+     
+    }
+
+    class two:one
+    {
+
+        int x1, y1;
+        string z1;
+
+        public two(int x1,int y1,string z1):base(x1,y1,500)
+        {
+            this.x1 = x1;
+            this.y1 = y1;
+            this.z1 = z1;
+        }
+        public void method2()
+        {
+            Console.WriteLine("x1 value = {0} y1 value = {1} z1 value = {2}", x1, y1, z1);
+        }
+      
+    }
+
+    class three : two
+    {
+        int x2;
+        string y2;
+
+        public three(int x2, string y2):base(x2,100,y2)
+        {
+            this.x2 = x2;
+            this.y2 = y2;
+        }
+        public void method3()
+        {
+            Console.WriteLine("x2 value = {0} y2 value = {1}", x2, y2);
+        }
+    }
+
+
+    class Class13
+    {
+        static void Main(string[] args)
+        {
+
+            three obj = new three(100, "Chennai");
+            obj.method1();
+            obj.method2();
+            obj.method3();
+
+            cl_class1 cl1 = new cl_class1();
+            int x = cl1.printval();
+            Console.WriteLine(x);
+           
+        }
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassLibrary2
+{
+   public class H_employee
+    {
+        int empno;
+        string empname, address, email, phone;
+
+        public void base_read()
+        {
+            Console.WriteLine("Reading empno,empnane,address, email, phone in base class");
+        }
+
+        public void base_print()
+        {
+            Console.WriteLine("print empno,empnane,address, email, phone in base class");
+        }
+
+
+    }
+    public class reg_employee : H_employee
+    {
+        int salary, pf, ta, tax, netsal;
+        public void reg_read()
+        {
+            base.base_read();
+            Console.WriteLine("Reading salary,pf,ta,tax percentage..");
+        }
+
+        public void reg_monthly_pay_calc()
+        {
+            Console.WriteLine("calculating mothly pay formula caculated netsal ");
+        }
+
+        public void reg_print()
+        {
+            base.base_print();
+            Console.WriteLine("printing salary,pf,ta,tax,netsal");
+        }
+    }
+
+    public class reg1_employee:reg_employee
+    {
+        int medical_all, h_insurance;
+        public void reg1_read()
+        {
+
+            base.reg_read();
+            Console.WriteLine("Reading medical_all, h_insurance..");
+        }
+    }
+
+   public class con_employee : H_employee
+    {
+        int c_amount, c_duration, gst, sa, monthlypay;
+        public void con_read()
+        {
+            base.base_read();
+            Console.WriteLine("Reading c_amount, c_duration, gst, sa");
+        }
+
+        public void con_monthly_pay_calc()
+        {
+            Console.WriteLine("calculating mothly pay formula caculated monthlypay ");
+        }
+
+        public void con_print()
+        {
+            base.base_print();
+            Console.WriteLine("printing c_amount, c_duration, gst, sa, monthlypay");
+        }
+    }
+
+   public class free_employee : H_employee
+    {
+        int h_pay, tds, a_all, weeklypay;
+        public void free_read()
+        {
+            base.base_read();
+            Console.WriteLine("Reading h_pay, tds, a_all");
+        }
+
+        public void free_monthly_pay_calc()
+        {
+            Console.WriteLine("calculating mothly pay formula caculated weeklypay ");
+        }
+
+        public void free_print()
+        {
+            base.base_print();
+            Console.WriteLine("printing h_pay, tds, a_all, weeklypay ");
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ClassLibrary2;
+
+namespace ConsoleApp1
+{
+  
+    class Class14
+    {
+        static void Main(string[] args)
+        {
+            int key1 = 0;
+            do
+            {
+
+                Console.WriteLine("employee information system");
+                Console.WriteLine("1.regular employee");
+                Console.WriteLine("2.contract employee");
+                Console.WriteLine("3.freelancer employee");
+                Console.WriteLine("press any key...");
+                int key = int.Parse(Console.ReadLine());
+
+                switch (key)
+                {
+                    case 1:
+                        {
+                            reg1_employee rg = new reg1_employee();
+                            rg.reg1_read();
+                            rg.reg_monthly_pay_calc();
+                            rg.reg_print();
+                            break;
+                        }
+                    case 2:
+                        {
+                            con_employee con = new con_employee();
+                            con.con_read();
+                            con.con_monthly_pay_calc();
+                            con.con_print();
+                            break;
+                        }
+                    case 3:
+                        {
+                            free_employee free = new free_employee();
+                            free.free_read();
+                            free.free_monthly_pay_calc();
+                            free.free_print();
+                            break;
+                        }
+                    default:
+                        Console.WriteLine("Ivalid key");
+                        break;
+
+                }
+                Console.WriteLine("press 1 to continue 0 to exit...");
+                key1 = int.Parse(Console.ReadLine());
+            }
+            while (key1 == 1);
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    class method_orl
+    {
+        employee obj = new employee();
+        public method_orl(employee obj)
+        {
+            this.obj = obj;
+        }
+
+        public employee search(int empno)
+        {
+            employee obj1 = new employee();
+            if(obj.empno==empno)
+            {
+                obj1 = obj;
+            }
+            return obj1;
+        }
+
+        public employee search(string empname)
+        {
+            employee obj1 = new employee();
+            if (obj.empname==empname)
+            {
+                obj1 = obj;
+            }
+            return obj1;
+        }
+
+        public employee search(string empname,int deptno)
+        {
+            employee obj1 = new employee();
+            if (obj.empname == empname && obj.deptno==deptno)
+            {
+                obj1 = obj;
+            }
+            return obj1;
+        }
+    }
+
+
+    class Class15
+    {
+        static void Main(string[] args)
+        {
+            employee obj = new employee();
+
+            Console.WriteLine("empno...");
+            obj.empno = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("empname ...");
+            obj.empname =Console.ReadLine();
+
+            Console.WriteLine("job ...");
+            obj.job =Console.ReadLine();
+
+            Console.WriteLine("deptno...");
+            obj.deptno = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("salary...");
+            obj.salary = int.Parse(Console.ReadLine());
+            employee obj2;
+            method_orl obj1 = new method_orl(obj);
+            obj2=obj1.search(1001);
+            Console.WriteLine(obj2.ToString());
+                
+            obj2 = obj1.search("sam");
+            Console.WriteLine(obj2.ToString());
+
+            obj2 = obj1.search("sam", 20);
+            Console.WriteLine(obj2.ToString());
+
+
+        }
+    }
+}
+
+
+
+
+
+
+
+

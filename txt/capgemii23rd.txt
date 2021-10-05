@@ -1,0 +1,475 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    [Serializable]
+    public class player
+    {
+        public int plid { get; set; }
+        public string pname { get; set; }
+        public string game { get; set; }
+    }
+
+
+    class p_list
+    {
+        public Dictionary<string,List<player>> pl_list(List<player> ls)
+        {
+            Dictionary<string, List<player>> di = new Dictionary<string, List<player>>();
+            List<player> c_ls = new List<player>();
+            List<player> h_ls = new List<player>();
+            List<player> f_ls = new List<player>();
+
+            foreach(player x in ls)
+            {
+                if(x.game=="cricket")
+                {
+                    c_ls.Add(x);
+                }
+                else if(x.game == "hockey")
+                {
+                    h_ls.Add(x);
+                }
+                else if(x.game == "football")
+                {
+                    f_ls.Add(x);
+                }
+            }
+
+            di.Add("Cricket", c_ls);
+            di.Add("Hockey", h_ls);
+            di.Add("FootBall", f_ls);
+
+            return di;
+        }
+    }
+
+
+    class Class34
+    {
+        static void Main(string[] args)
+        {
+            int key = 0;
+            player p;
+            List<player> ls = new List<player>();
+            do
+            {
+
+                p = new player();
+
+                Console.WriteLine("pid ");
+                p.plid= int.Parse(Console.ReadLine());
+
+
+                Console.WriteLine("pname");
+                p.pname = Console.ReadLine();
+
+                Console.WriteLine("game ");
+                p.game = Console.ReadLine();
+
+                ls.Add(p);
+
+                Console.WriteLine("press 1 to continue 0 to exit");
+                key = int.Parse(Console.ReadLine());
+
+            }
+            while (key==1);
+
+            p_list lst = new p_list();
+            Dictionary<string, List<player>>  di=lst.pl_list(ls);
+            Console.WriteLine("---Player List---");
+            foreach (KeyValuePair<string, List<player>> x in di)
+            {
+                Console.WriteLine(" Game {0}", x.Key);
+                foreach (player x1 in x.Value)
+                {
+                    Console.WriteLine("playerid = {0} playername = {1} game = {2} ", x1.plid, x1.pname, x1.game);
+                }
+
+            }
+
+            Console.Read();
+
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp1
+{
+    class Class35
+    {
+
+        static void Main(string[] args)
+        {
+            StreamWriter sr = new StreamWriter("e://capgeminiProj//emp.txt");
+
+            List<employee> h_ls = new List<employee>();
+
+            h_ls.Add(new employee
+            {
+                empno = 1007,
+                empname = "rajiv",
+                job = "manager",
+                deptno = 30,
+                salary = 7000
+            });
+            h_ls.Add(new employee
+            {
+                empno = 1008,
+                empname = "harish",
+                job = "hr",
+                deptno = 30,
+                salary = 7000
+            });
+            h_ls.Add(new employee
+            {
+                empno = 1009,
+                empname = "kumar",
+                job = "admin",
+                deptno = 30,
+                salary = 8000
+            });
+
+            sr.WriteLine("Employee List");
+
+
+            foreach (employee x1 in h_ls)
+            {
+                sr.WriteLine("empno = {0} empname = {1} job = {2} deptno ={3} salary = {4}", x1.empno, x1.empname, x1.job, x1.deptno, x1.salary);
+            }
+
+            sr.Flush();
+            sr.Close();
+
+            Console.WriteLine("File Created..");
+
+
+            StreamReader sr1 = new StreamReader("e://capgeminiProj//emp.txt");
+
+            string str = sr1.ReadToEnd();
+            Console.WriteLine("reading from file....");
+            Console.WriteLine(str);
+            sr1.Close();
+
+            Console.Read();
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Data;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+
+namespace ConsoleApp1
+{
+    class Class36
+    {
+        static void Main(string[] args)
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml("e://capgeminiProj//emp1.xml");
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                Console.WriteLine("empno = {0}", ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                Console.WriteLine("empname = {0}", ds.Tables[0].Rows[i].ItemArray[1].ToString());
+                Console.WriteLine("job = {0}", ds.Tables[0].Rows[i].ItemArray[2].ToString());
+                Console.WriteLine("deptno = {0}", ds.Tables[0].Rows[i].ItemArray[3].ToString());
+                Console.WriteLine("salary = {0}", ds.Tables[0].Rows[i].ItemArray[4].ToString());
+                Console.WriteLine();
+            }
+                FileStream fs = new FileStream("e://capgeminiProj//empserial.data", FileMode.Create);
+                BinaryFormatter frmt = new BinaryFormatter();
+                frmt.Serialize(fs, ds);
+                fs.Close();
+                Console.WriteLine("successfuly serialized..");
+
+                FileStream fs1 = new FileStream("e://capgeminiProj//empserial.data", FileMode.Open);
+                DataSet ds1 = (DataSet)frmt.Deserialize(fs1);
+            fs1.Close();
+            Console.WriteLine("reading after deserialization..");
+
+            for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+            {
+                Console.WriteLine("empno = {0}", ds1.Tables[0].Rows[i].ItemArray[0].ToString());
+                Console.WriteLine("empname = {0}", ds1.Tables[0].Rows[i].ItemArray[1].ToString());
+                Console.WriteLine("job = {0}", ds1.Tables[0].Rows[i].ItemArray[2].ToString());
+                Console.WriteLine("deptno = {0}", ds1.Tables[0].Rows[i].ItemArray[3].ToString());
+                Console.WriteLine("salary = {0}", ds1.Tables[0].Rows[i].ItemArray[4].ToString());
+                Console.WriteLine();
+            }
+
+            player p = new player();
+            p.plid = 1001;
+            p.pname = "sam";
+            p.game = "cricker";
+
+            XmlSerializer srxml = new XmlSerializer(typeof(player));
+            StreamWriter txtwrter = new StreamWriter("e://capgeminiProj//player.xml");
+            srxml.Serialize(txtwrter, p);
+            txtwrter.Close();
+
+            Console.WriteLine("xml serilization success..");
+
+            FileInfo f1 = new FileInfo("e://capgeminiProj//emp.txt");
+
+            string filename1 = f1.Name;
+            string direc_name = f1.DirectoryName;
+            string length = f1.Length.ToString();
+            string ext = f1.Extension;
+
+            Console.WriteLine("name = {0} directory_name = {1} length = {2} extension = {3}", filename1, direc_name, length, ext);
+
+            DirectoryInfo dinfo = new DirectoryInfo("e://capgeminiProj");
+
+            FileInfo[] f_array = dinfo.GetFiles("*");
+            Console.WriteLine("printing file names..");
+            foreach (FileInfo x in f_array)
+            {
+                Console.WriteLine(x.Name);
+            }
+
+            Console.WriteLine("printing directory names..");
+
+            DirectoryInfo[] d_array = dinfo.GetDirectories();
+
+            foreach (DirectoryInfo x in d_array)
+            {
+                Console.WriteLine(x.Name);
+            }
+
+            DriveInfo dr_info = new DriveInfo("c://");
+            string size = dr_info.TotalSize.ToString();
+            string freespace = dr_info.TotalFreeSpace.ToString();
+            string a_freespace = dr_info.AvailableFreeSpace.ToString();
+
+            Console.WriteLine("size = {0} freespace = {1} av_freespace = {2} ", size,freespace, a_freespace);
+            string msg = "ghghg hghg hgh hghgh";
+            FileStream fs2 = new FileStream("e://capgeminiProj//hello.txt",FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs2);
+            bw.Write(msg);
+
+        }
+
+        }
+    }
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+namespace ConsoleApp1
+{
+
+    class t_class
+    {
+        public void method1()
+        {
+            
+            for(int i=0;i<20;i++)
+            {
+                Console.WriteLine("method1 thread {0} thread name {1} " , i,Thread.CurrentThread.Name);
+            }
+        }
+
+        public void method2()
+        {
+           
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine("method2 thread {0} thread name {1} " , i, Thread.CurrentThread.Name);
+            }
+        }
+
+        public void method3()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine("method3 thread {0} thread name {1} " , i, Thread.CurrentThread.Name);
+            }
+        }
+
+    }
+
+    class Class38
+    {
+        static void Main(string[] args)
+        {
+            t_class th = new t_class();
+            Thread th1 = new Thread(th.method1);
+            Thread th2 = new Thread(th.method2);
+            Thread th3 = new Thread(th.method3);
+
+            th1.Start();
+            th2.Start();
+            th3.Start();
+
+            th1.Name = "thread1";
+            th2.Name = "thread2";
+            th3.Name = "thread3";
+
+
+            //t_class th = new t_class();
+            //th.method1();
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine("main thread " + i);
+            }
+            //th.method2();
+            Console.WriteLine("this is a main method");
+            //th.method3();
+            Console.Read();
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+namespace ConsoleApp1
+{
+    class t_class1
+    {
+        public void webserver()
+        {
+            lock (this)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    Console.WriteLine("resource {0} user {1} ", i, Thread.CurrentThread.Name);
+                }
+            }
+        }
+    }
+        class Class39
+    {
+        static void Main(string[] args)
+        {
+            t_class1 t = new t_class1();
+
+            Thread user1 = new Thread(t.webserver);
+            Thread user2 = new Thread(t.webserver);
+            Thread user3 = new Thread(t.webserver);
+            Thread user4 = new Thread(t.webserver);
+            Thread user5 = new Thread(t.webserver);
+         
+
+            user1.Start();
+            user2.Start();
+            user3.Start();
+            user4.Start();
+            user5.Start();
+
+            user1.Name = "sam123";
+            user2.Name = "rajiv_123";
+            user3.Name = "rahul123";
+            user4.Name = "manish123";
+            user5.Name = "sanjay123";
+
+
+
+
+            Console.WriteLine("this is main");
+
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Console.WriteLine("main thread " + i);
+            //}
+
+            Console.WriteLine("this is test1");
+
+            Console.WriteLine("this is test2");
+            Console.Read();
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace ConsoleApp1
+{
+    class b_class1
+    {
+        public void test()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine("test "+i.ToString());
+            }
+
+            Console.WriteLine("enter number to input");
+            int x = int.Parse(Console.ReadLine());
+        }
+
+        public void test1()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine("test1 " + i +100.ToString());
+            }
+
+        }
+    }
+
+    class Class40
+    {
+        static void Main(string[] args)
+        {
+            b_class1 b = new b_class1();
+            Thread th = new Thread(b.test);
+            Thread th1= new Thread(b.test1);
+
+            th.Start();
+            th1.Start();
+
+            th.IsBackground =false;
+            th1.IsBackground = false;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("main " + i + 100.ToString());
+            }
+
+            Console.WriteLine("End of main program");
+        }
+    }
+}
+

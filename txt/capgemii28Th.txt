@@ -1,0 +1,290 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebApplication3.Models
+{
+    public class Employee1
+    {
+        public int empno { get; set; }
+        public string empname { get; set; }
+        public string job { get; set; }
+        public int deptno { get; set; }
+        public int salary { get; set; }
+
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebApplication3.Models
+{
+    public class UserClass1
+    {
+        public string uname { get; set; }
+        public string pwd { get; set; }
+        public string address { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WebApplication3.Models;
+
+namespace WebApplication3.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        // GET: Employee
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult MyHome_page()
+        {
+            return View();
+        }
+
+        public ActionResult Register_page()
+        {
+            return View();
+        }
+
+        public ActionResult Register(string text1,string pwd1,string text2,string text3,string text4)
+        {
+            UserClass1 usr = new UserClass1();
+            usr.uname = text1;
+            usr.pwd = pwd1;
+            usr.address = text2;
+            usr.phone = text3;
+            usr.email = text4;
+
+            ViewBag.uname ="Uname "+ usr.uname;
+            ViewBag.pwd = "Password "+usr.pwd;
+            ViewBag.address ="Address "+ usr.address;
+            ViewBag.phone ="Phone "+ usr.phone;
+            ViewBag.email ="Email "+ usr.email;
+
+            return View("Register_page");
+        }
+
+
+        public ActionResult Emp_Records()
+        {
+            List<Employee1> ls = new List<Employee1>();
+            ls.Add(new Employee1 { empno = 1001, empname = "sam", job = "manager", deptno = 10, salary = 9000 });
+            ls.Add(new Employee1 { empno = 1002, empname = "raj", job = "admin", deptno = 20, salary = 6000 });
+            ls.Add(new Employee1 { empno = 1003, empname = "rahul", job = "admin", deptno = 20, salary = 7000 });
+            ls.Add(new Employee1 { empno = 1004, empname = "vinod", job = "dev", deptno = 30, salary = 8000 });
+            ls.Add(new Employee1 { empno = 1005, empname = "sanjay", job = "dev", deptno = 10, salary = 9000 });
+            return View(ls);
+        }
+
+        public ActionResult Emp_rec()
+        {
+            return View();
+        }
+
+        public string T_Method()
+        {
+            string str = "Hello Welcome to MVC application Development";
+            return str;
+        }
+
+        public string T_Method1()
+        {
+            string str = "Hello Welcome to MVC application Testing";
+            return str;
+        }
+    }
+}
+
+
+
+
+
+@model WebApplication3.Models.UserClass1 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <h2>User Information</h2>
+    <div>      
+            <table width="50%">
+                <tr>
+                    <td>UserName</td>
+                    <td>@Model.uname</td>
+                    @*<td>@ViewBag.uname</td>*@
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td>@Model.pwd</td>
+                    @*<td>@ViewBag.pwd</td>*@
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td>@Model.address</td>
+                    @*<td>@ViewBag.address</td>*@
+                </tr>
+
+                <tr>
+                    <td>Mobile</td>
+                    <td>@Model.phone</td>
+                    @*<td>@ViewBag.phone</td>*@
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td>@Model.email</td>
+                    @*<td>@ViewBag.email</td>*@
+                </tr>
+            </table>
+</div>
+</body>
+</html>
+
+
+
+
+ <form id="form1" action="Register" method="post">
+            <table width="50%">
+                <tr>
+                    <td>UserName</td>
+                    <td><input type="text" id="text1" name="text1" /></td>
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" id="pwd1" name="pwd1" /></td>
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" id="text2" name="text2" /></td>
+                </tr>
+
+                <tr>
+                    <td>Mobile</td>
+                    <td><input type="text" id="text3" name="text3" /></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" id="text4" name="text4" /></td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" id="button1" value="Register" /></td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyHome_page</title>
+</head>
+<body>
+    <div>
+        <h2>Login Form</h2>
+        <hr />
+        <table width="40%" bgcolor="orange">
+            <tr>
+                <td>
+                    UserName
+                </td>
+                <td>
+                    <input type="text" id="text1" name="text1" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                    <input type="password" id="text2" name="pwd1" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="button1" value="Login" />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        @Html.ActionLink("Click Here for Registration..", "Register_page")
+        @Html.ActionLink("Click Here for EmpRecord..", "Emp_rec")
+        @Html.ActionLink("Forget Password Click Here..", "for_Pass_page")
+       
+    </div>
+</body>
+</html>
+
+
+@model List<WebApplication3.Models.Employee1>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Emp_Records</title>
+</head>
+<body>
+    <h2>Employee Details</h2>
+    <hr />
+    <div> 
+        <table border="1" width="70%" bgcolor="yellow">
+            <tr><th>Empno</th><th>Empname</th><th>Job</th><th>Deptno</th><th>Salary</th></tr>
+            @foreach(var x in Model)
+            {
+        <tr>
+            <td>@Html.DisplayFor(model=>x.empno)</td>
+            <td>@Html.DisplayFor(model => x.empname)</td>
+            <td>@Html.DisplayFor(model => x.job)</td>
+            <td>@Html.DisplayFor(model => x.deptno)</td>
+            <td>@Html.DisplayFor(model => x.salary)</td>
+        </tr>
+            }
+
+        </table>
+        <hr />
+    </div>
+</body>
+</html>

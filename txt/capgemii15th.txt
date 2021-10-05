@@ -1,0 +1,358 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Console.WriteLine("Hello Welcome to C# Program");
+            //int,short,long(int32,int16,int64)
+            //float,double,decimal,char,string(stringbuilder),byte,object,var,
+
+            //int size = int.MaxValue;
+            //short size1 = short.MaxValue;
+            //long size2 = long.MaxValue;
+            //Console.WriteLine("the maximun value store in int32 " + size+" short value "+size1+ " long value "+size2);
+            //int num = 3000;
+            //string name = "sam";
+            //char rank = 'a';
+            //float salary = 5600.20f;
+            //double netsal = 4500.999d;
+
+            int empno, deptno, salary,tax,netsal;
+            string empname, job;
+
+            Console.WriteLine("--Employee Information--");
+            Console.WriteLine("\n\n");
+
+            Console.WriteLine("Empno ");
+            empno =int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Empname ");
+            empname = Console.ReadLine();
+
+            Console.WriteLine("Job ");
+            job = Console.ReadLine();
+
+            Console.WriteLine("Deptno ");
+            deptno = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Salary ");
+            salary = int.Parse(Console.ReadLine());
+
+            
+
+            if(salary >= 25000 && salary < 50000)
+            {
+                tax = salary * 15 / 100;
+                netsal = salary - tax;
+            }
+            else if (salary >= 20000 && salary < 30000)
+            {
+                tax = salary * 12 / 100;
+                netsal = salary - tax;
+            }
+            else if (salary >= 15000 && salary < 20000)
+            {
+                tax = salary * 10 / 100;
+                netsal = salary - tax;
+            }
+            else if (salary >= 10000 && salary < 15000)
+            {
+                tax = salary * 8 / 100;
+                netsal = salary - tax;
+            }
+            else
+            {
+                tax = salary * 5 / 100;
+                netsal = salary - tax;
+            }
+
+            Console.WriteLine("empno = {0} empname = {1} job = {2} deptno = {3} salary = {4} tax = {5} netsal = {6}", empno, empname, job, deptno, salary,tax,netsal);
+            Console.WriteLine("this is for loop");
+            for (int i=0;i<10;i++)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("this is while loop");
+            int j = 0;
+            while(j<10)
+            {
+                Console.WriteLine(j);
+                j++;
+            }
+
+            Console.WriteLine("this is nested for loop");
+
+            for(int i=1;i<=5;i++)
+            {
+                for(int j1=1;j1<=i;j1++)
+                {
+                    Console.Write("\t"+j1);
+                }
+                Console.WriteLine();
+            }
+
+           
+
+
+
+            Console.WriteLine("this is do while loop");
+            int key = 0;
+            do
+            {
+                Console.WriteLine("this is nested While loop");
+                int k = 1;
+                while (k <= 5)
+                {
+                    int l = 1;
+                    while (l <= k)
+                    {
+                        Console.Write("\t" + l);
+                        l++;
+                        
+                    }
+                    k++;
+                    Console.WriteLine();
+                }
+                Console.WriteLine("press 1 to continue 0 to exit ");
+                key = int.Parse(Console.ReadLine());
+            }
+            while (key==1);
+
+            Console.WriteLine("Enter value 1 to 7");
+            int key1 = int.Parse(Console.ReadLine());
+
+            switch(key1)
+            {
+                case 1:
+                     Console.WriteLine("Sunday");
+                    break;
+                case 2:
+                    Console.WriteLine("Monday");
+                    break;
+                case 3:
+                    Console.WriteLine("Tuesday");
+                    break;
+                case 4:
+                    Console.WriteLine("Wednesday");
+                    break;
+                case 5:
+                    Console.WriteLine("Thursday");
+                    break;
+                default:
+                    Console.WriteLine("invalid Number");
+                    break;
+            }
+
+
+
+
+            //switch()
+            //{
+            //    case:1
+            //}
+
+
+
+            Console.Read();
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Class1
+    {
+        static void Main(string[] args)
+        {
+            int[] arr = new int[5];
+            int[] arr2 = new int[5];
+            string[] cities = new string[5];
+            //arr[0] = 100;
+            //arr[1] = 200;
+            //arr[2] = 300;
+            //arr[3] = 500;
+            //arr[4] = 600;
+            int[] arr1 = { 150, 160, 170, 180 };
+
+
+            Console.WriteLine("enter the value of array");
+            for (int i=0;i<5;i++)
+            {
+                arr[i] =int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("enter the value of cities");
+            for (int i = 0; i < 5; i++)
+            {
+                cities[i] = Console.ReadLine();
+            }
+
+            Console.WriteLine("printing Array values using for loop");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+
+            Console.WriteLine("printing Array values using foreach");
+            foreach(int x in arr)
+            {
+                Console.WriteLine(x);
+            }
+            int sum = 0;
+            Console.WriteLine("printing Array1 values using foreach");
+            foreach (int x in arr1)
+            {
+                sum = sum + x;
+                Console.WriteLine(x);
+            }
+            Console.WriteLine("sum value " + sum);
+
+
+            Console.WriteLine("Enter value to search in array");
+            int s_val= int.Parse(Console.ReadLine());
+            bool flag = false;
+            foreach (int x in arr1)
+            {
+               if(x==s_val)
+                {
+                    flag = true;
+                    Console.WriteLine("value exist " + x);
+                }
+              
+            }
+            if(flag==false)
+            {
+                Console.WriteLine("value does not exist");
+            }
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Class2
+    {
+        static void Main(string[] args)
+        {
+            int[,] arr = new int[5, 5];
+          
+
+            //arr[0, 0] = 900;
+            //arr[0, 1] = 780;
+            //arr[0, 2] = 567;
+            //arr[0, 3] = 887;
+            //arr[0, 4] = 587;
+
+            //arr[1, 0] = 900;
+            //arr[1, 1] = 480;
+            //arr[1, 2] = 267;
+            //arr[1, 3] = 867;
+            //arr[1, 4] = 387;
+
+            Console.WriteLine("Readig double dimension arrays");
+            for(int i=0;i<5;i++)
+            {
+                for(int j=0;j<5;j++)
+                {
+                    arr[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+
+            Console.WriteLine("printing double dimension arrays");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write("\t" + arr[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Jagged Arrays");
+            int[][] j_array = new int[4][];
+
+            j_array[0] = new int[2] { 10, 20 };
+            j_array[1] = new int[3] { 10, 20,50 };
+            j_array[2] = new int[4] { 10, 20,6,9 };
+            j_array[3] = new int[3] { 10, 20 ,3};
+
+            for(int i=0;i<j_array.Length;i++)
+            {
+                Console.WriteLine("array index {0}", i);
+                for(int j=0;j<j_array[i].Length;j++)
+                {
+                    Console.Write("\t" + j_array[i][j]);
+                }
+                Console.WriteLine();
+            }
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+
+    public struct product
+    {
+        public int p_id;
+        public string p_name;
+        public int price;
+    }
+    class Class3
+    {
+        static void Main(string[] args)
+        {
+            product[] p=new product[3];
+
+            for (int i = 0; i < p.Length; i++)
+            {
+
+                Console.WriteLine("Product id");
+                p[i].p_id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Product Name");
+                p[i].p_name = Console.ReadLine();
+
+                Console.WriteLine("Price");
+                p[i].price = int.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < p.Length; i++)
+            {
+
+                Console.WriteLine("product id = {0} product name = {1} price = {2} ", p[i].p_id, p[i].p_name, p[i].price);
+            }
+        }
+    }
+}
