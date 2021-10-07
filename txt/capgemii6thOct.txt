@@ -1,0 +1,188 @@
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using WebApplication9.Models;
+
+
+namespace WebApplication9.Controllers
+{
+    public class EmployeeController1 : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-RHC47KF;Initial Catalog=capegemini1;Integrated Security=True");
+        List<Employee1> ls = new List<Employee1>();
+        Employee1 obj;
+
+
+        public IActionResult GetRec1()
+        {
+            con.Open();
+            SqlDataAdapter ad = new SqlDataAdapter("select * from emp", con);
+            DataSet ds = new DataSet();
+            ad.Fill(ds, "emp1");
+            EmpDept obj1;
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                obj = new Employee1();
+                obj.empno = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[0].ToString());
+                obj.empname = ds.Tables["emp1"].Rows[i].ItemArray[1].ToString();
+                obj.job = ds.Tables["emp1"].Rows[i].ItemArray[2].ToString();
+                obj.deptno = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[3].ToString());
+                obj.salary = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[4].ToString());
+
+                ls.Add(obj);
+            }
+
+            var agg1 = ls.Sum(sum => sum.salary);
+            var agg2 = ls.Max(max => max.salary);
+            var agg3 = ls.Min(min => min.salary);
+            var agg4 = ls.Average(average => average.salary);
+
+            ViewBag.sumsal = agg1;
+            ViewBag.maxsal = agg2;
+            ViewBag.minsal = agg3;
+            ViewBag.avgsal = agg4;
+
+
+
+            SqlDataAdapter ad1 = new SqlDataAdapter("select * from dept", con);
+            ad1.Fill(ds, "dept1");
+            List<Dept1> ls4 = new List<Dept1>();
+            Dept1 Dobj;
+            for (int i = 0; i < ds.Tables["dept1"].Rows.Count; i++)
+            {
+                Dobj = new Dept1();
+                Dobj.deptno= int.Parse(ds.Tables["dept1"].Rows[i].ItemArray[0].ToString());
+                Dobj.deptname = ds.Tables["dept1"].Rows[i].ItemArray[1].ToString();
+                Dobj.locid = int.Parse(ds.Tables["dept1"].Rows[i].ItemArray[2].ToString());
+              
+
+                ls4.Add(Dobj);
+            }
+
+            var result6 = from empobj in ls
+                          join dptobj in ls4 on empobj.deptno equals dptobj.deptno orderby empobj.empname
+                          select new
+                          {
+                              empobj.empno,
+                              empobj.empname,
+                              empobj.job,
+                              empobj.deptno,
+                              empobj.salary,
+                              dptobj.deptname,
+                              dptobj.locid
+                          };
+
+            var result7 = from empobj in ls
+                          join dptobj in ls4 on empobj.deptno equals dptobj.deptno
+                          group empobj by empobj.deptno;
+                          //select new
+                          //{
+                          //    empobj.empno,
+                          //    empobj.empname,
+                          //    empobj.job,
+                          //    empobj.deptno,
+                          //    empobj.salary,
+                          //    dptobj.deptname,
+                          //    dptobj.locid
+                          //};
+
+            var result8 = from x in ls group x by x.deptno;
+
+            foreach(var x1 in result8)
+            {
+               
+
+                foreach(Employee1 obj5 in x1)
+                {
+                  
+                }
+
+            }
+
+
+            List<EmpDept> ls5 = new List<EmpDept>();
+            foreach (var obj2 in result6)
+            {
+                obj1 = new EmpDept();
+                obj1.empno = int.Parse(obj2.empno.ToString());
+                obj1.empname = obj2.empname;
+                obj1.job = obj2.job;
+                obj1.deptno = int.Parse(obj2.deptno.ToString());
+                obj1.salary = int.Parse(obj2.salary.ToString());
+                obj1.deptname = obj2.deptname;
+                obj1.locid= int.Parse(obj2.locid.ToString());
+                ls5.Add(obj1);
+
+            }
+
+
+                con.Close();
+
+            return View(ls5);
+        }
+
+        public IActionResult GetRec()
+        {
+            con.Open();
+            SqlDataAdapter ad = new SqlDataAdapter("select * from emp", con);
+            DataSet ds = new DataSet();
+            ad.Fill(ds, "emp1");
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                obj = new Employee1();
+                obj.empno = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[0].ToString());
+                obj.empname = ds.Tables["emp1"].Rows[i].ItemArray[1].ToString();
+                obj.job = ds.Tables["emp1"].Rows[i].ItemArray[2].ToString();
+                obj.deptno = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[3].ToString());
+                obj.salary = int.Parse(ds.Tables["emp1"].Rows[i].ItemArray[4].ToString());
+
+                ls.Add(obj);
+            }
+
+            var result = from x in ls select new { x.empno, x.empname, x.job, x.deptno, x.salary };
+            var result1 = from x in ls where x.empno == 1002 select x;
+            var result3 = from x in ls where x.deptno == 10 select x;
+            var result4 = from x in ls where x.deptno == 10 && x.salary > 8000 select x;                        
+            var result5 = from x in ls where x.deptno == 10 && x.salary > 8000 select new { x.empno, x.empname, x.salary };
+            var result6 = from x in ls where x.job == "dev" select x;
+
+
+
+
+            List < Employee1 > ls1 = new List<Employee1>();
+            foreach (var obj1 in result5)
+            {
+                obj = new Employee1();
+                obj.empno = int.Parse(obj1.empno.ToString());
+                obj.empname = obj1.empname;
+                //obj.job = obj1.job;
+                //obj.deptno = int.Parse(obj1.deptno.ToString());
+                obj.salary = int.Parse(obj1.salary.ToString());
+
+                ls1.Add(obj);             
+            }
+            foreach (var obj1 in result1)
+            {
+                ViewBag.empno = obj1.empno;
+                ViewBag.empname = obj1.empname;
+                ViewBag.job = obj1.job;
+                ViewBag.deptno = obj1.deptno;
+                ViewBag.salary = obj1.salary;
+            }
+                con.Close();
+            return View(ls1);
+
+        }
+    }
+}
