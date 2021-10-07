@@ -10,7 +10,7 @@ namespace Webappwithdbs.Controllers
 {
     public class CrudController : Controller
     {
-        SqlConnection con = new SqlConnection(@"Data Source=adminvm\SQLEXPRESS01;Initial Catalog=master;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-F5M5DBC;Initial Catalog=Employe;Integrated Security=True");
         public IActionResult Index()
         {
             return View();
@@ -28,7 +28,7 @@ namespace Webappwithdbs.Controllers
             obj.job = job;
             obj.deptno = deptno;
             obj.salary = salary;
-            SqlCommand cmd = new SqlCommand("use emp insert into emp values(" + obj.empno + ",'" + obj.empname + "','" + obj.job + "'," + obj.deptno + "," + obj.salary + ")", con);
+            SqlCommand cmd = new SqlCommand(" insert into emp values(" + obj.empno + ",'" + obj.empname + "','" + obj.job + "'," + obj.deptno + "," + obj.salary + ")", con);
             cmd.ExecuteNonQuery();
             con.Close();
             ViewBag.status = "success...";
@@ -42,7 +42,7 @@ namespace Webappwithdbs.Controllers
         {
             con.Open();
                 Employe obj = new Employe();
-                SqlDataAdapter ad = new SqlDataAdapter("use emp select * from emp where empno=" + empno + "", con);
+                SqlDataAdapter ad = new SqlDataAdapter(" select * from emp where empno=" + empno + "", con);
                 DataSet ds = new DataSet();
                 ad.Fill(ds, "emp2");
 
@@ -64,7 +64,7 @@ namespace Webappwithdbs.Controllers
             obj.deptno = int.Parse(text4);
             obj.salary = int.Parse(text5);
 
-            SqlCommand cmd = new SqlCommand("use emp update emp set empno=" + obj.empno + ",empname='" + obj.empname + "',job='" + obj.job + "',deptno=" + obj.deptno + ",salary=" + obj.salary + " where empno=" + obj.empno + "", con);
+            SqlCommand cmd = new SqlCommand("update emp set empno=" + obj.empno + ",empname='" + obj.empname + "',job='" + obj.job + "',deptno=" + obj.deptno + ",salary=" + obj.salary + " where empno=" + obj.empno + "", con);
             cmd.ExecuteNonQuery();
 
 
@@ -80,7 +80,7 @@ namespace Webappwithdbs.Controllers
         {
             int empno = int.Parse(text1);
             con.Open();
-            SqlCommand cmd = new SqlCommand("use emp delete from emp where empno=" + empno + "", con);
+            SqlCommand cmd = new SqlCommand("use Employe delete from emp where empno=" + empno + "", con);
             cmd.ExecuteNonQuery();
 
 

@@ -12,7 +12,7 @@ namespace Webappwithdbs.Controllers
     {
         //cnonection string sqlmgmt studio->right click on server->properties->connection name
         //open vscode->tools->connect to db->enter database name copied from sqlmgmt->select db->advanced->copy conn string->OK
-        SqlConnection con = new SqlConnection(@"Data Source=adminvm\SQLEXPRESS01;Initial Catalog=master;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-F5M5DBC;Initial Catalog=Employe;Integrated Security=True");
         List<Employe> li = new List<Employe>();
         List<Department> ld = new List<Department>();
         public IActionResult Index()
@@ -28,7 +28,7 @@ namespace Webappwithdbs.Controllers
         {
             
             con.Open();                                                     //opening sql coonection and must be closed
-            SqlDataAdapter ad = new SqlDataAdapter("use emp select * from emp  ",con);//gathering all values inside table. But can't understand when printed
+            SqlDataAdapter ad = new SqlDataAdapter("select * from emp ", con);//gathering all values inside table. But can't understand when printed
             DataSet ds = new DataSet();                                     //using dataset and printing to see
             ad.Fill(ds, "emp1");                                            //fill is a object which used to fill sql data into dataset table
             for (int i = 0; i < ds.Tables["emp1"].Rows.Count; i++)
@@ -64,7 +64,7 @@ namespace Webappwithdbs.Controllers
         public IActionResult getdeptrec()
         {
             con.Open();
-            SqlDataAdapter ad = new SqlDataAdapter("use emp select * from dept", con);
+            SqlDataAdapter ad = new SqlDataAdapter(" select * from dept", con);
             DataSet ds = new DataSet();                                     //using dataset and printing to see
             ad.Fill(ds, "dept");
             Department d;
