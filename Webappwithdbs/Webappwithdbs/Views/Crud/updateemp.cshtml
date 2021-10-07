@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Employee Update Form</h1>
+<hr />
+<form id="form1" action="Update2" method="post">
+    <table width="40" bgcolor="yellow">
+        <tr>
+            <td>Empno</td>
+            <td><input type="text" id="text1" name="text1" value=@ViewBag.empno /></td>
+        </tr>
+
+        <tr>
+            <td>Empname</td>
+            <td><input type="text" id="text2" name="text2" value=@ViewBag.empname /></td>
+        </tr>
+
+        <tr>
+            <td>job</td>
+            <td><input type="text" id="text3" name="text3" value=@ViewBag.job /></td>
+        </tr>
+
+        <tr>
+            <td>Deptno</td>
+            <td><input type="text" id="text4" name="text4" value=@ViewBag.deptno /></td>
+        </tr>
+
+        <tr>
+            <td>Salary</td>
+            <td><input type="text" id="text5" name="text5" value=@ViewBag.salary /></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" id="text5" name="text5" value="Update" /></td>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+</form>

@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Webappwithdbs.Models.Department>
+<h2>Department records</h2>
+<div class="table-responsive table">
+    <table class=" table-dark table-striped">
+        <tr><th>deptno</th><th>deptname</th><th>loc_name</th></tr>
+        @foreach (Department x in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => x.deptno)</td>
+                <td>@Html.DisplayFor(mode => x.deptname)</td>
+                <td>@Html.DisplayFor(mode => x.loc_name)</td>
+            </tr>
+
+        }
+
+        </table>
+    </div>

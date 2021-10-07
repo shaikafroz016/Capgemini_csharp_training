@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h3>Enter employee details to register</h3>
+<form class="form-group" action="registeremp" id="frm1" method="post">
+    <table>
+        <tr>
+            <td>Enter emp no</td>
+            <td><input type="number" id="empno" name="empno" /></td>
+        </tr>
+        <tr>
+            <td>Enter emp name</td>
+            <td><input type="text" id="empname" name="empname"/></td>
+        </tr>
+        <tr>
+            <td>Enter job</td>
+            <td><input type="text" id="job" name="job"/></td>
+        </tr>
+        <tr>
+            <td>deptno</td>
+            <td><input type="number" id="deptno" name="deptno"/></td>
+        </tr>
+        <tr>
+            <td>salary</td>
+            <td><input type="number" id="salary" name="salary"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="register"/>
+            </td>
+        </tr>
+    </table>
+</form>
+@ViewBag.status

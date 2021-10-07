@@ -6,18 +6,27 @@
 }
 <h1>Employee Details..</h1>
 <hr />
-<table border="1" width="70%" bgcolo="yellow">
-    <tr><th>Empno</th><th>Empname</th><th>Job</th><th>Deptno</th><th>Salary</th></tr>
+<div class="table-responsive table">
+    <table class=" table-dark table-striped">
+        <tr><th>Empno</th><th>Empname</th><th>Job</th><th>Deptno</th><th>Salary</th></tr>
 
-    @foreach (var x in Model)
-    {
-        <tr>
-            <td>@Html.DisplayFor(model => x.empno)</td>
-            <td>@Html.DisplayFor(model => x.empname)</td>
-            <td>@Html.DisplayFor(model => x.job)</td>
-            <td>@Html.DisplayFor(model => x.deptno)</td>
-            <td>@Html.DisplayFor(model => x.salary)</td>
-        </tr>
-    }
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => x.empno)</td>
+                <td>@Html.DisplayFor(model => x.empname)</td>
+                <td>@Html.DisplayFor(model => x.job)</td>
+                <td>@Html.DisplayFor(model => x.deptno)</td>
+                <td>@Html.DisplayFor(model => x.salary)</td>
+            </tr>
+        }
 
-</table>
+
+    </table>
+    <br />
+    <h2>sum of all salary</h2>
+    <h3>@ViewBag.sumsal</h3>
+    <br/>
+    <h3>avg salary</h3>
+    <h3>@ViewBag.avgsal</h3>
+</div>

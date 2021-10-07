@@ -50,7 +50,7 @@ namespace Webappwithdbs
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Employe}/{action=getrec}/{id?}");
+                    pattern: "{controller=Home}/{action=index}/{id?}");
             });
         }
     }
