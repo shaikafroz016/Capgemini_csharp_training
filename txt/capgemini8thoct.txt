@@ -1,0 +1,456 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class emp
+    {
+        public int empno { get; set; }
+        public string empname { get; set; }
+        public int salary { get; set; }
+
+        public override string ToString()
+        {
+            return " Empno "+ this.empno + " " +" Empname "+ this.empname + " " +" Salary " +this.salary;
+        }
+
+
+    }
+
+    class Class1
+    {
+        static void Main(string[] args)
+        {
+            List<emp> ls = new List<emp>();
+
+            emp x;
+            x= new emp();
+            x.empno = 1001;
+            x.empname = "sam";
+            x.salary = 7000;
+            ls.Add(x);
+
+            x = new emp();
+            x.empno = 1002;
+            x.empname = "rahul";
+            x.salary = 8000;
+            ls.Add(x);
+
+            foreach(emp obj in ls)
+            {
+                Console.WriteLine(obj.ToString());
+            }
+
+            //Console.WriteLine("empno = {0} empname {1} salary ={2}",x.empno,x.empname,x.salary);
+            
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService" in both code and config file together.
+[ServiceContract]
+public interface IService
+{
+
+	[OperationContract]
+	int add(int a,int b);
+
+	[OperationContract]
+	int subs(int a, int b);
+
+	[OperationContract]
+	int multi(int a, int b);
+
+	[OperationContract]
+	int divs(int a, int b);
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+// NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
+public class Service : IService
+{
+    public int add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public int divs(int a, int b)
+    {
+        return a / b;
+    }
+
+    public int multi(int a, int b)
+    {
+        return a * b;
+    }
+
+    public int subs(int a, int b)
+    {
+        return a - b;
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace WebApplication10.Controllers
+{
+    public class Emp1Controller : Controller
+    {
+        // GET: Emp1
+        public ActionResult Index()
+        {
+            return View();
+        }
+        capegemini1Entities1 db = new capegemini1Entities1();
+        public ActionResult getrec()
+        {
+            var result = from x in db.pro1() select x;
+
+            emp obj;
+            List<emp> ls = new List<emp>();
+            foreach (var x in result)
+            {
+                obj = new emp();
+                obj.empno = x.empno;
+                obj.empname = x.empname;
+                obj.job = x.job;
+                obj.deptno = x.deptno;
+                obj.salary = x.salary;
+                ls.Add(obj);
+
+            }
+            return View(ls);
+        }
+
+
+        public ActionResult getrec1()
+        {
+            int deptno = 20;
+            var result = from x in db.pro2(deptno) select x;
+
+            emp obj;
+            List<emp> ls = new List<emp>();
+            foreach (var x in result)
+            {
+                obj = new emp();
+                obj.empno = x.empno;
+                obj.empname = x.empname;
+                obj.job = x.job;
+                obj.deptno = x.deptno;
+                obj.salary = x.salary;
+                ls.Add(obj);
+
+            }
+            return View(ls);
+        }
+
+        public ActionResult register()
+        {
+            return View();
+        }
+
+        public ActionResult Register1(string text1, string text2, string text3, string text4, string text5)
+        {
+            db.pro3(int.Parse(text1), text2, text3, int.Parse(text4), int.Parse(text5));
+            return View();
+
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+        public ActionResult Update1(string text1)
+        {
+            int empno = int.Parse(text1);
+            emp obj = db.emps.Where(x => x.empno == empno).SingleOrDefault();
+
+            ViewBag.empno = obj.empno;
+            ViewBag.empname = obj.empname;
+            ViewBag.job = obj.job;
+            ViewBag.deptno = obj.deptno;
+            ViewBag.salary = obj.salary;
+
+            return View();
+        }
+
+        public ActionResult Update2(string text1, string text2, string text3, string text4, string text5)
+        {
+            db.pro4(int.Parse(text1), text2, text3, int.Parse(text4), int.Parse(text5));
+            return View();
+        }
+
+        public ActionResult Delete()
+        {
+            int empno = 1011;
+            db.pro5(empno);
+            return View();
+        }
+
+        public ActionResult ser_test()
+        {
+            return View();
+        }
+        ServiceReference1.ServiceClient sr = new ServiceReference1.ServiceClient();
+        public ActionResult ser_test1(string text1, string text2)
+        {
+           
+            int fnum = int.Parse(text1);
+            int snum = int.Parse(text2);
+
+            int result = sr.add(fnum, snum);
+            int result1 = sr.subs(fnum, snum);
+            int result2 = sr.multi(fnum, snum);
+            int result3 = sr.divs(fnum, snum);
+            ViewBag.result ="Add = "+ result+" subs = "+result1+" multi = "+result2+" divs = "+result3;
+
+            return View("ser_test");
+        }
+    }
+}
+
+
+
+select * from emp
+
+create procedure pro1
+as
+begin
+select * from emp
+end
+
+create procedure pro2(@deptno int)
+as
+begin
+select * from emp where deptno=@deptno
+end
+
+create procedure pro3(@empno int,@empname varchar(20),@job varchar(20), @deptno int,@salary int)
+as
+begin
+insert into emp values(@empno,@empname,@job, @deptno,@salary)
+end
+
+create procedure pro4(@empno int,@empname varchar(20),@job varchar(20), @deptno int,@salary int)
+as
+begin
+update emp set empno=@empno, empname=@empname,job=@job,deptno=@deptno,salary=@salary where empno=@empno
+end
+
+
+create procedure pro5(@empno int)
+as
+begin
+delete from emp where empno=@empno
+end
+
+
+
+exec pro2 10
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace WebApplication10.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        // GET: Employee
+        public ActionResult Index()
+        {
+            return View();
+        }
+        capegemini1Entities1 db = new capegemini1Entities1();
+        public ActionResult getrec()
+        {
+            List<emp> ls = db.emps.ToList();
+            return View(ls);
+        }
+
+        public ActionResult SearchEmpid()
+        {          
+            return View();
+        }
+        public ActionResult SearchEmpid1(string text1)
+        {
+            int empno = int.Parse(text1);
+            emp obj = db.emps.Where(x => x.empno == empno).SingleOrDefault();
+
+            ViewBag.empno ="Empno ="+ obj.empno;
+            ViewBag.empname = "Empname =" + obj.empname;
+            ViewBag.job = "Job =" + obj.job;
+            ViewBag.deptno = "Deptno =" + obj.deptno;
+            ViewBag.salary= "Salary =" + obj.salary;
+
+            return View("SearchEmpid");
+        }
+
+
+        public ActionResult SearchDeptno()
+        {
+            return View();
+        }
+        public ActionResult SearchDeptno1(string text1)
+        {
+            int deptno = int.Parse(text1);
+            ViewBag.deptno ="Details of Depatment Number "+ deptno;
+            List<emp> dls = new List<emp>();
+
+            List<emp> elst = (from d in db.emps where d.deptno == deptno select d).ToList();
+
+            //emp obj;
+            //foreach(var x in deptlist)
+            //{
+            //    obj = new emp();
+            //    obj.empno = x.empno;
+            //    obj.empname = x.empname;
+            //    obj.job = x.job;
+            //    obj.deptno = x.deptno;
+            //    obj.salary = x.salary;
+            //    dls.Add(obj);
+            //}
+          
+            return View(elst);
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult Register1(string text1,string text2,string text3,string text4,string text5)
+        {
+            emp obj = new emp();
+            obj.empno = int.Parse(text1);
+            obj.empname=text2;
+            obj.job=text3;
+            obj.deptno = int.Parse(text4);
+            obj.salary = int.Parse(text5);
+
+            db.emps.Add(obj);
+            db.SaveChanges();
+
+            return View();
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+        public ActionResult Update1(string text1)
+        {
+            int empno = int.Parse(text1);
+            emp obj = db.emps.Where(x => x.empno == empno).SingleOrDefault();
+
+            ViewBag.empno =obj.empno;
+            ViewBag.empname =obj.empname;
+            ViewBag.job =obj.job;
+            ViewBag.deptno =obj.deptno;
+            ViewBag.salary =obj.salary;
+
+            return View();
+        }
+
+        public ActionResult Update2(string text1, string text2, string text3, string text4, string text5)
+        {
+            int empno = int.Parse(text1);
+            emp obj = db.emps.Where(x => x.empno == empno).SingleOrDefault();
+
+            obj.empno = int.Parse(text1);
+            obj.empname = text2;
+            obj.job = text3;
+            obj.deptno = int.Parse(text4);
+            obj.salary = int.Parse(text5);
+
+            db.SaveChanges();
+            return View();
+        }
+
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public ActionResult Delete1(string text1)
+        {
+            int empno = int.Parse(text1);
+            emp obj = db.emps.Where(x => x.empno == empno).SingleOrDefault();
+            db.emps.Remove(obj);
+            db.SaveChanges();
+            return View();
+        }
+    }
+}
+
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ser_test</title>
+</head>
+<body>
+    <form id="form1" action="ser_test1" method="post">
+        <table>
+            <tr>
+                <td>First value</td>
+                <td><input type="text" id="text1" name="text1" /></td>
+            </tr>
+            <tr>
+                <td>Second value</td>
+                <td><input type="text" id="text2" name="text2" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" id="submit1" value="Calc_Results" /></td>
+                <td>@ViewBag.result</td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
